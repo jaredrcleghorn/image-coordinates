@@ -1,3 +1,6 @@
+from itertools import permutations
+
+
 def test_image_coordinates(client):
     # data
     dimensions = [3, 3]
@@ -8,5 +11,9 @@ def test_image_coordinates(client):
         [[1, 1], [2, 1], [3, 1]],
     ]
 
-    response = client.post("/", json={"dimensions": dimensions, "corners": corners})
-    assert response.json == solution
+    # test all permutations of corners
+    for corners_perm in permutations(corners):
+        response = client.post(
+            "/", json={"dimensions": dimensions, "corners": corners_perm}
+        )
+        assert response.json == solution
