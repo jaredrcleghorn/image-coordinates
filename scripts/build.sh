@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --tag image-coordinates .
+docker build --tag jaredcleghorn:image-coordinates .
